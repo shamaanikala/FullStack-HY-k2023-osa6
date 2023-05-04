@@ -18,6 +18,7 @@ const App = () => {
   const addAnecdote = (event) => {
     event.preventDefault()
     const anecdote = event.target.anecdote.value
+    event.target.anecdote.value = ''
     console.log(anecdote)
     dispatch(createAnecdote(anecdote))
   }
