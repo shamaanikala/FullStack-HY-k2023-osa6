@@ -2,7 +2,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { createAnecdote, votedAnecdote } from './reducers/anecdoteReducer'
 
 const App = () => {
-  const anecdotes = useSelector(state => state)
+  // järjestetään lista täällä, koska reducer ei tunnu oikealta paikalta
+  // ja kuten materiaalissa tehtiin importantNotes selektroissa
+  // myös SO ketju tukee tätä:
+  // https://stackoverflow.com/questions/34475367/where-should-i-handle-sorting-in-redux-app
+  const anecdotes = useSelector(state => state.sort((a,b) => b.votes - a.votes))
   const dispatch = useDispatch()
 
   const vote = (id) => {

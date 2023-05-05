@@ -31,13 +31,13 @@ const reducer = (state = initialState, action) => {
       const anecdoteToVote = state.find(a => a.id === id)
       const votedAnecdote = { ...anecdoteToVote, votes: anecdoteToVote.votes + 1}
       return state.map(a => a.id !== id ? a : votedAnecdote)
-        .sort((a,b) => b.votes - a.votes)
+        //.sort((a,b) => b.votes - a.votes)
     case 'NEW_ANECDOTE':
       console.log('Add',action.payload.anecdote)
       const newAnecdote = asObject(action.payload.anecdote)
       return [...state, newAnecdote]
     default:
-      return state.sort((a,b) => b.votes - a.votes)
+      return state
   }
 }
 
