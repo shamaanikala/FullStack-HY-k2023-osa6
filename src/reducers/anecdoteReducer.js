@@ -23,7 +23,6 @@ const reducer = (state = initialState, action) => {
   console.log('state now: ', state)
   console.log('action', action)
 
-  // T6.5: RIKKOOKO TILAN JÄRJESTÄMINEN FUNKTION PUHTAUDEN?
   switch(action.type) {
     case 'VOTE':
       console.log('Vote',action.payload.id)
@@ -31,7 +30,6 @@ const reducer = (state = initialState, action) => {
       const anecdoteToVote = state.find(a => a.id === id)
       const votedAnecdote = { ...anecdoteToVote, votes: anecdoteToVote.votes + 1}
       return state.map(a => a.id !== id ? a : votedAnecdote)
-        //.sort((a,b) => b.votes - a.votes)
     case 'NEW_ANECDOTE':
       console.log('Add',action.payload.anecdote)
       const newAnecdote = asObject(action.payload.anecdote)
