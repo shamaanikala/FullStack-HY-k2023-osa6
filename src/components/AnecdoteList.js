@@ -1,6 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { votedAnecdote } from '../reducers/anecdoteReducer'
 
+
+const Anecdote = ({ anecdote, voteAction }) => {
+  return (
+    <div key={anecdote.id}>
+      <div>
+        {anecdote.content}
+      </div>
+      <div>
+        has {anecdote.votes}
+        <button onClick={voteAction}>vote</button>
+      </div>
+    </div>
+  )
+}
+
 const AnecdoteList = () => {
   // järjestetään lista täällä, koska reducer ei tunnu oikealta paikalta
   // ja kuten materiaalissa tehtiin importantNotes selektroissa
@@ -18,15 +33,11 @@ const AnecdoteList = () => {
   return (
     <>
       {anecdotes.map(anecdote =>
-        <div key={anecdote.id}>
-          <div>
-            {anecdote.content}
-          </div>
-          <div>
-            has {anecdote.votes}
-            <button onClick={() => vote(anecdote.id)}>vote</button>
-          </div>
-        </div>
+        <Anecdote
+          key={anecdote.id}
+          anecdote={anecdote}
+          voteAction={() => vote(anecdote.id)}
+        />
       )}
     </>
   )
