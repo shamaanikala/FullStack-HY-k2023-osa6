@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { votedAnecdote } from '../reducers/anecdoteReducer'
+import { voteAnecdote } from '../reducers/anecdoteReducer'
 
 
 const Anecdote = ({ anecdote, voteAction }) => {
@@ -22,13 +22,17 @@ const AnecdoteList = () => {
   // myös SO ketju tukee tätä:
   // https://stackoverflow.com/questions/34475367/where-should-i-handle-sorting-in-redux-app
   const anecdotes = useSelector(({ anecdotes, filter }) => {
+    //console.log('AnecdoteList: ',typeof(anecdotes),anecdotes)
+    // anecdotes on nyt object, joka lienee slicen syytä
+    // muutetaan oikeaksi taulukoksi
+    const anecdotesList = [...anecdotes]
     if (filter) {
-      return anecdotes
+      return anecdotesList
         .filter(a => a.content.includes(filter))
         .sort((a, b) => b.votes - a.votes)
     }
     else {
-      return anecdotes.sort((a, b) => b.votes - a.votes)
+      return anecdotesList.sort((a, b) => b.votes - a.votes)
     }
     
   })
@@ -36,7 +40,7 @@ const AnecdoteList = () => {
 
   const vote = (id) => {
     console.log('vote', id)
-    dispatch(votedAnecdote(id))
+    dispatch(voteAnecdote(id))
   }
 
 
