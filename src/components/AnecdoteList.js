@@ -21,7 +21,7 @@ const AnecdoteList = () => {
   // ja kuten materiaalissa tehtiin importantNotes selektroissa
   // myös SO ketju tukee tätä:
   // https://stackoverflow.com/questions/34475367/where-should-i-handle-sorting-in-redux-app
-  const anecdotes = useSelector(state => state.sort((a, b) => b.votes - a.votes))
+  const anecdotes = useSelector(state => state.anecdotes.sort((a, b) => b.votes - a.votes))
   const dispatch = useDispatch()
 
   const vote = (id) => {
