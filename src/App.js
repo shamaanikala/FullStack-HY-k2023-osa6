@@ -2,7 +2,7 @@ import AnecdoteForm from './components/AnecdoteForm'
 import Notification from './components/Notification'
 
 import { useQuery } from 'react-query'
-import axios from 'axios'
+import { getAnecdotes } from './requests'
 
 const App = () => {
 
@@ -12,7 +12,7 @@ const App = () => {
 
   const result = useQuery(
     'anecdotes',
-    () => axios.get('http://localhost:3001/anecdotes').then(res => res.data),
+    getAnecdotes,
     {
       retry: 3
     }    
@@ -23,6 +23,14 @@ const App = () => {
   if ( result.isLoading ) {
     return <div>loading data...</div>
   }
+
+  // tehtävänannon linkki:
+  // https://react-query-v3.tanstack.com/guides/queries
+  // ei toimi, joten otetaan tapa esimerkistä:
+  // https://tanstack.com/query/v3/docs/react/overview
+  // oletettavasti uusi linkki on:
+  // https://tanstack.com/query/v3/docs/react/guides/queries
+  // jonka mukaan result.error lienee pätevä tapa 
 
   if (result.error) {
     console.log(result.error.message)
