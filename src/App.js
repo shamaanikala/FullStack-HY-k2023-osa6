@@ -12,7 +12,10 @@ const App = () => {
 
   const result = useQuery(
     'anecdotes',
-    () => axios.get('http://localhost:3001/anecdotes').then(res => res.data)
+    () => axios.get('http://localhost:3001/anecdotes').then(res => res.data),
+    {
+      retry: 3
+    }    
   )
   console.log(result)
 
