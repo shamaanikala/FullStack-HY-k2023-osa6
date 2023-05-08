@@ -1,4 +1,8 @@
+import { useMutation } from 'react-query'
+import { createAnecdote } from '../requests'
 const AnecdoteForm = () => {
+
+  const newAnecdoteMutation = useMutation(createAnecdote)
 
   const onCreate = (event) => {
     event.preventDefault()
