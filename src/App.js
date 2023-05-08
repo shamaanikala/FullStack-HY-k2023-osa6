@@ -16,9 +16,16 @@ const App = () => {
   )
   console.log(result)
 
+  
   if ( result.isLoading ) {
     return <div>loading data...</div>
   }
+
+  if (result.error) {
+    console.log(result.error.message)
+    return <div>anecdote service not available due to problems in server</div>
+  }
+  
 
   const anecdotes = result.data
 
