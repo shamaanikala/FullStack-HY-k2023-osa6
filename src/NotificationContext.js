@@ -8,6 +8,7 @@ const notificationReducer = (state, action) => {
       console.log('SHOW', action.payload)
       return action.payload
     case "HIDE":
+      console.log('HIDE', action.payload)
       return null
       // return action.payload + 1 === notificationId
       //   ? null // on tuorein, joten pois näkyvistä
@@ -16,14 +17,6 @@ const notificationReducer = (state, action) => {
       return state
   }
 }
-
-// export const useNotification = (notification) => {
-//   const dispatch = useNotificationDispatch()
-//   const id = notificationId
-//   dispatch({ type: 'SHOW', payload: notification })
-//   notificationId++
-//   setTimeout(() => dispatch({ type: 'HIDE', payload: id}), 5000)
-// }
 
 const NotificationContext = createContext()
 
@@ -48,5 +41,4 @@ export const NotificationContextProvider = (props) => {
   )
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default NotificationContext

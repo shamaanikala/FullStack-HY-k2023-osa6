@@ -3,7 +3,7 @@ import Notification from './components/Notification'
 
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { getAnecdotes, updateAnecdote } from './requests'
-import { useNotification, useNotificationDispatch } from './NotificationContext'
+import { useNotificationDispatch } from './NotificationContext'
 
 const App = () => {
   
@@ -17,11 +17,12 @@ const App = () => {
     },
   })
 
-  // const setNotification = useNotification(null)
-
   const handleVote = (anecdote) => {
     updateAnecdoteMutation.mutate({ ...anecdote, votes: anecdote.votes + 1 })
-    dispatch({ type: 'SHOW', payload: 'voted' })
+    dispatch({ type: 'SHOW', payload: `anecdote '${anecdote.content}' voted` })
+    setTimeout(() => {
+       dispatch({ type: 'HIDE' })
+      }, 5000)
   }
 
   const result = useQuery(

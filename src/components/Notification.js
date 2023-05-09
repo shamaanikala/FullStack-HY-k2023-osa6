@@ -1,4 +1,6 @@
-import { useNotificationDispatch, useNotificationValue } from '../NotificationContext'
+import { useNotificationValue } from '../NotificationContext'
+
+// let notificationId = 0
 
 const Notification = () => {
   const style = {
@@ -8,25 +10,8 @@ const Notification = () => {
     marginBottom: 5
   }
 
-  
-
-  const dispatch = useNotificationDispatch()
   const notification = useNotificationValue()
   console.log(`notification: ${notification}`)
-  
-  // const dispatch = useNotificationDispatch()
-
-
-  //const id = notificationId
-  //const dispatch = useNotificationDispatch()
-  //console.log(`setNotification, id: ${id}`)
-  // useNotificationDispatch('SHOW', { notification: notification, id: id })
-  // notificationId++
-  // setTimeout(() => console.log('setTimeout callback ei voi kutsua hookia'), 5000)
-  // useNotificationDispatch('HIDE', id)
-
-
-  // dispatch()
 
   // if (true) return null
   if (notification === null) {
