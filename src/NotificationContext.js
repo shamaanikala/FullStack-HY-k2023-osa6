@@ -1,7 +1,5 @@
 import { createContext, useReducer, useContext } from 'react'
 
-// let notificationId = 0
-
 const notificationReducer = (state, action) => {
   switch (action.type) {
     case "SHOW":
@@ -10,9 +8,6 @@ const notificationReducer = (state, action) => {
     case "HIDE":
       console.log('HIDE', action.payload)
       return null
-      // return action.payload + 1 === notificationId
-      //   ? null // on tuorein, joten pois näkyvistä
-      //   : state // pidetään tuorein viesti näkyvissä
     default:
       return state
   }
