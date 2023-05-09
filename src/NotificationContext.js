@@ -3,16 +3,15 @@ import { createContext, useReducer, useContext } from 'react'
 const notificationReducer = (state, action) => {
   switch (action.type) {
     case "SHOW":
-      console.log('SHOW', action.payload)
+      console.log(`'SHOW', action.payload:`,action.payload, 'state: ', state)
       const message = action.payload.message
       const id = action.payload.id
       return { message, id: id }
     case "HIDE":
-      console.log('HIDE', action.payload, state)
+      console.log(`'HIDE', action.payload:`,action.payload, 'state: ', state)
       return action.payload === state.id
         ? { ...state, message: null }
         : state
-      // return null
     default:
       return state
   }

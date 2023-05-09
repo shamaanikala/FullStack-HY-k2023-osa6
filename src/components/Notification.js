@@ -1,7 +1,5 @@
 import { useNotificationValue } from '../NotificationContext'
 
-// let notificationId = 0
-
 const Notification = () => {
   const style = {
     border: 'solid',
@@ -11,9 +9,8 @@ const Notification = () => {
   }
 
   const notification = useNotificationValue().message
-  console.log(`notification: ${notification}`)
+  //console.log(`notification: ${notification}`)
 
-  // if (true) return null
   if (notification === null) {
     return null
   }
