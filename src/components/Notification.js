@@ -10,7 +10,7 @@ const Notification = () => {
     marginBottom: 5
   }
 
-  const notification = useNotificationValue()
+  const notification = useNotificationValue().message
   console.log(`notification: ${notification}`)
 
   // if (true) return null

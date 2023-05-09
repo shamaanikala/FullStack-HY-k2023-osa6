@@ -4,10 +4,15 @@ const notificationReducer = (state, action) => {
   switch (action.type) {
     case "SHOW":
       console.log('SHOW', action.payload)
-      return action.payload
+      const message = action.payload.message
+      const id = action.payload.id
+      return { message, id: id }
     case "HIDE":
-      console.log('HIDE', action.payload)
-      return null
+      console.log('HIDE', action.payload, state)
+      return action.payload === state.id
+        ? { ...state, message: null }
+        : state
+      // return null
     default:
       return state
   }
@@ -27,7 +32,7 @@ export const useNotificationDispatch = () => {
 
 
 export const NotificationContextProvider = (props) => {
-  const [notification, notificationDispatch] = useReducer(notificationReducer, null)
+  const [notification, notificationDispatch] = useReducer(notificationReducer, { message: null, id: 0 })
 
   return (
     <NotificationContext.Provider value={[notification, notificationDispatch]}>
