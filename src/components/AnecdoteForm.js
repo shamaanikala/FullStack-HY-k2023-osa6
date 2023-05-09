@@ -6,14 +6,24 @@ const AnecdoteForm = () => {
 
   const queryClient = useQueryClient()
 
+  const dispatch = useNotificationDispatch()
+  const notificationId = useNotificationValue().id
+
   const newAnecdoteMutation = useMutation(createAnecdote, {
     onSuccess: () => {
       queryClient.invalidateQueries('anecdotes')
     },
+    onError: (err) => {
+      const errorMessage = err.response.data.error
+      const msgId = notificationId + 1
+      dispatch({ type: 'SHOW', payload: { message: `${errorMessage}`, id: msgId } })
+      setTimeout(() => {
+         dispatch({ type: 'HIDE', payload: msgId })
+        }, 5000)
+    }
   })
 
-  const dispatch = useNotificationDispatch()
-  const notificationId = useNotificationValue().id
+  
 
   const onCreate = (event) => {
     event.preventDefault()
